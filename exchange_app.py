@@ -9,7 +9,6 @@ import plotly.express as px
 # -----------------------------
 st.set_page_config(
     page_title="Currency Exchange Explorer",
-    page_icon="💱",
     layout="wide"
 )
 
@@ -130,7 +129,7 @@ def get_exchange_rates(base_currency):
 # -----------------------------
 # TITLE
 # -----------------------------
-st.title("💱 Currency Exchange Explorer")
+st.title(" Currency Exchange Explorer")
 
 st.write(
     """
@@ -151,20 +150,20 @@ currency_options = sorted(CURRENCY_NAMES.keys())
 from_currency = st.sidebar.selectbox(
     "From currency",
     currency_options,
-    index=currency_options.index("EUR")
+    index=currency_options.index("DKK")
 )
 
 to_currency = st.sidebar.selectbox(
     "To currency",
     currency_options,
-    index=currency_options.index("DKK")
+    index=currency_options.index("EUR")
 )
 
 amount = st.sidebar.number_input(
     "Amount",
     min_value=0.01,
     value=100.00,
-    step=10.00
+    step=5.00
 )
 
 
@@ -221,7 +220,7 @@ with col3:
 # -----------------------------
 st.divider()
 
-st.subheader("🌍 Compare currencies by continent")
+st.subheader("Compare currencies by continent")
 
 st.write(
     "Choose a continent to see how your amount converts into "
