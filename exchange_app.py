@@ -288,7 +288,6 @@ chart_data = chart_data.sort_values(
     ascending=True
 )
 
-
 # -----------------------------
 # BAR CHART
 # -----------------------------
@@ -308,16 +307,18 @@ fig = px.bar(
     }
 )
 
+# Show the complete number on every bar
 fig.update_traces(
-    texttemplate="%{text:,.2f}",
-    textposition="outside"
+    texttemplate="%{x:,.2f}",
+    textposition="outside",
+    cliponaxis=False
 )
 
 fig.update_layout(
     height=max(450, len(chart_data) * 55),
     margin=dict(
         l=20,
-        r=80,
+        r=120,
         t=30,
         b=20
     ),
@@ -327,24 +328,6 @@ fig.update_layout(
 st.plotly_chart(
     fig,
     use_container_width=True
-)
-
-
-# -----------------------------
-# DATA TABLE
-# -----------------------------
-st.subheader("Exchange details")
-
-table_data = chart_data[
-    ["Currency", "Currency name", "Amount"]
-].copy()
-
-table_data["Amount"] = table_data["Amount"].round(2)
-
-st.dataframe(
-    table_data,
-    use_container_width=True,
-    hide_index=True
 )
 
 
@@ -360,6 +343,4 @@ if "time_last_update_utc" in data:
 st.caption(
     "Note: the chart shows how many units of each currency "
     "you receive for the same amount of the selected base currency. "
-    "A longer bar does not necessarily mean that a currency is "
-    "stronger or weaker, because currencies have different denominations."
 )
